@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>My Inspo — Your Company</title>
+  
+  <style>
+    body {
+      margin: 0;
+      font-family: Georgia, serif;
+      color: #333;
+      font-size: 11pt; 
+    }
+    nav {
+      position: fixed; /* Fixes to the viewport */
+      left: 40px; /* Hugs the left side with 40px space */
+      top: 40px;
+      width: 150px; 
+    }
+    nav a {
+      display: block; 
+      text-decoration: none;
+      margin-bottom: 10px;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .content {
+      max-width: 650px; /* Content readability width */
+      margin: 40px auto; /* Centers the content block in the viewport */
+      line-height: 1.6;
+    }
+    h1, h2, h3 {
+      line-height: 1.2;
+    }
+    a {
+      color: #06f;
+    }
+    
+    /* On screens 1030px or less, the nav and content would overlap.
+       So, we switch to the mobile layout. */
+    @media (max-width: 1030px) {
+      body {
+        padding: 20px;
+      }
+      .content {
+        max-width: 100%;
+        margin: 0; /* Remove auto margin */
+      }
+      nav {
+        position: static; /* Un-stick on mobile */
+        left: auto;
+        top: auto;
+        width: 100%;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #ccc;
+      }
+      nav a {
+        display: inline-block; 
+        margin-right: 15px;
+        margin-bottom: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About me</a>
+    <a href="contact.html">Contact/Rates</a>
+  </nav>
+
+  <div class="content">
+    <header>
+      <h1>My Inspo</h1>
+      <div class="strap">A collection of things I find inspiring.</div>
+    </header>
+
+    <main class="page" role="main">
+      <section class="body" aria-label="Inspiration list">
+          <p>This is a living list of sites, articles, and designs that I admire.</p>
+          
+          <h3>Sites</h3>
+          <ul>
+            <li><a href="https://ssi.inc/" target="_blank" rel="noopener">ssi.inc</a></li>
+            <li><a href="https://thebestmotherfucking.website/" target="_blank" rel="noopener">thebestmotherfucking.website</a></li>
+            <li><a href="https://example.com" target="_blank" rel="noopener">Another inspiring link</a></li>
+          </ul>
+
+          <h3>Quotes</h3>
+          <blockquote>
+            <p>"Simplicity is the ultimate sophistication."</p>
+            <cite>– Leonardo da Vinci</cite>
+          </blockquote>
+
+      </section>
+    </main>
+  </div>
+    
+</body>
+</html>
