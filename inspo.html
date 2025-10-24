@@ -17,6 +17,8 @@
       left: 40px; /* Hugs the left side with 40px space */
       top: 40px;
       width: 150px; 
+      background-color: white; /* Added */
+      z-index: 100; /* Added */
     }
     nav a {
       display: block; 
@@ -47,29 +49,35 @@
       font-size: 10pt;
     }
 
-    /* On screens 1030px or less, the nav and content would overlap.
-       So, we switch to the mobile layout. */
+    /* --- MOBILE STYLES (Switches to Top Fixed Bar) --- */
     @media (max-width: 1030px) {
       body {
-        padding: 20px;
+        /* Pushes content down to make space for the new horizontal fixed nav */
+        padding-top: 60px; 
+        padding-left: 20px;
+        padding-right: 20px;
       }
       .content {
         max-width: 100%;
-        margin: 0; /* Remove auto margin */
+        margin: 40px auto; /* Centers content fully on mobile */
       }
       nav {
-        position: static; /* Un-stick on mobile */
-        left: auto;
-        top: auto;
-        width: 100%;
-        margin-bottom: 20px;
-        padding-bottom: 10px;
+        position: fixed; /* Nav stays sticky */
+        left: 0;
+        top: 0;
+        width: 100%; /* Spans the top */
+        padding: 10px 20px;
+        box-sizing: border-box;
+        display: flex; /* Aligns links horizontally */
+        justify-content: center; /* Centers links */
+        margin-bottom: 0;
         border-bottom: 1px solid #ccc;
       }
       nav a {
         display: inline-block; 
         margin-right: 15px;
         margin-bottom: 0;
+        font-size: 10pt; /* Added */
       }
     }
   </style>
@@ -94,9 +102,9 @@
           
           <h3>Sites</h3>
           <ul>
-            <li><a href="https://ssi.inc/" target="_blank" rel="noopener">ssi.inc</a></li>
-            <li><a href="https://thebestmotherfucking.website/" target="_blank" rel="noopener">thebestmotherfucking.website</a></li>
-            <li><a href="https://example.com" target="_blank" rel="noopener">Another inspiring link</a></li>
+            <li><a href="https.ssi.inc/" target="_blank" rel="noopener">ssi.inc</a></li>
+            <li><a href="https.thebestmotherfucking.website/" target="_blank" rel="noopener">thebestmotherfucking.website</a></li>
+            <li><a href="https.example.com" target="_blank" rel="noopener">Another inspiring link</a></li>
           </ul>
 
           <h3>Quotes</h3>
@@ -117,3 +125,4 @@
     
 </body>
 </html>
+
