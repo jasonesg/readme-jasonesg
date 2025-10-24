@@ -12,11 +12,16 @@
       color: #333;
       font-size: 11pt; 
     }
+    /* --- DESKTOP NAV (Sticky Left) --- */
     nav {
-      position: fixed; /* FIX: Restores Fixed Nav */
+      position: fixed; /* Nav is sticky */
       left: 40px; 
       top: 40px;
       width: 150px; 
+      /* Added background to cover content scroll underneath */
+      background-color: white; 
+      padding: 0; 
+      z-index: 100; /* Ensure nav is always on top */
     }
     nav a {
       display: block; 
@@ -26,10 +31,11 @@
     nav a:hover {
       text-decoration: underline;
     }
+    /* --- DESKTOP CONTENT (Centered Offset) --- */
     .content {
       max-width: 650px; 
-      /* Left Alignment: Fixed left margin to clear nav, fixed right margin */
-      margin: 40px 40px 40px 230px; 
+      /* Centered Alignment: Fixed left margin to clear nav, auto right margin to center */
+      margin: 40px auto 40px 230px; 
       line-height: 1.6;
     }
     h1, h2, h3 {
@@ -39,37 +45,43 @@
       color: #06f;
     }
     
-    /* On screens 1030px or less, the nav and content would overlap.
-       So, we switch to the mobile layout. */
+    /* --- MOBILE STYLES (Switches to Top Fixed Bar) --- */
     @media (max-width: 1030px) {
       body {
-        padding: 20px;
+        /* Pushes content down to make space for the new horizontal fixed nav */
+        padding-top: 60px; /* New padding for fixed top bar */
+        padding-left: 20px;
+        padding-right: 20px;
       }
       .content {
         max-width: 100%;
-        margin: 0; /* Remove fixed margin on mobile */
+        margin: 40px auto; /* Centers content fully on mobile */
       }
       nav {
-        position: static; /* Un-stick on mobile */
-        left: auto;
-        top: auto;
-        width: 100%;
-        margin-bottom: 20px;
-        padding-bottom: 10px;
+        position: fixed; /* Nav stays sticky */
+        left: 0;
+        top: 0;
+        width: 100%; /* Spans the top */
+        padding: 10px 20px;
+        box-sizing: border-box;
+        display: flex; /* Aligns links horizontally */
+        justify-content: center; /* Centers links */
+        margin-bottom: 0;
         border-bottom: 1px solid #ccc;
       }
       nav a {
         display: inline-block; 
         margin-right: 15px;
         margin-bottom: 0;
+        font-size: 10pt;
       }
     }
 
-    /* --- Photo hover effect styles (restored) --- */
+    /* --- Photo hover effect styles --- */
     .photo-container {
         position: relative;
-        width: 180px; 
-        height: 180px; 
+        width: 180px; /* Set to image width */
+        height: 180px; /* Set to image height */
         margin: 30px 0;
         cursor: pointer; 
     }
