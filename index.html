@@ -1,1 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>jasonesg</title>
+  
+  <style>
+    body {
+      margin: 0;
+      font-family: Georgia, serif;
+      color: #333;
+      font-size: 11pt; 
+    }
+    /* --- DESKTOP NAV (Sticky Left) --- */
+    nav {
+      position: fixed; /* Nav is sticky */
+      left: 40px; 
+      top: 40px;
+      width: 150px; 
+      /* Added background to cover content scroll underneath */
+      background-color: white; 
+      padding: 0; 
+      z-index: 100; /* Ensure nav is always on top */
+    }
+    nav a {
+      display: block; 
+      text-decoration: none;
+      margin-bottom: 10px;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    /* --- DESKTOP CONTENT (Centered) --- */
+    .content {
+      max-width: 650px; 
+      /* Centered Alignment */
+      margin: 40px auto; 
+      line-height: 1.6;
+    }
+    h1, h2, h3 {
+      line-height: 1.2;
+    }
+    a {
+      color: #06f;
+    }
+    
+    /* --- Photo hover effect styles --- */
+    .photo-container {
+        position: relative;
+        width: 180px; /* Set to image width */
+        height: 180px; /* Set to image height */
+        margin: 30px 0;
+        cursor: pointer; 
+    }
+
+    .photo-container img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transition: opacity 0.4s ease-in-out;
+    }
+
+    .photo-container .image-hover {
+        opacity: 0;
+    }
+
+    .photo-container:hover .image-hover {
+        opacity: 1;
+    }
+
+    .photo-container .image-base {
+        opacity: 1;
+    }
+    /* --- END of photo styles --- */
+
+    /* --- Footer --- */
+    .site-footer {
+      border-top: 1px solid #ccc;
+      margin-top: 40px;
+      padding-top: 20px;
+      color: #777;
+      font-size: 10pt;
+    }
+
+    /* --- MOBILE STYLES (Switches to Top Fixed Bar) --- */
+    @media (max-width: 1030px) {
+      body {
+        /* Pushes content down to make space for the new horizontal fixed nav */
+        padding-top: 60px; /* New padding for fixed top bar */
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+      .content {
+        max-width: 100%;
+        margin: 40px auto; /* Centers content fully on mobile */
+      }
+      nav {
+        position: fixed; /* Nav stays sticky */
+        left: 0;
+        top: 0;
+        width: 100%; /* Spans the top */
+        padding: 10px 20px;
+        box-sizing: border-box;
+        display: flex; /* Aligns links horizontally */
+        justify-content: center; /* Centers links */
+        margin-bottom: 0;
+        border-bottom: 1px solid #ccc;
+      }
+      nav a {
+        display: inline-block; 
+        margin-right: 15px;
+        margin-bottom: 0;
+        font-size: 10pt;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About me</a>
+    <a href="contact.html">Contact/Rates</a>
+  </nav>
+  
+  <div class="content">
+    <header>
+      <h1>Howdy, i'm @jasonesg.</h1>
+      <div class="strap">The future is within reach.</div>
+    </header>
+
+    <main class="body" role="main">
+      <p class="lead">Building the future is the most important challenge of our time.</p>
+      <p>We have started with one goal and one focus: creating breakthrough technology that matters.</p>
+      <p>Our mission is our name, and our entire product roadmap, because it is our sole focus. Our team, investors, and business model are all aligned to achieve our vision.</p>
+      <p>We approach innovation and responsibility in tandem, as challenges to be solved through revolutionary engineering and scientific breakthroughs. We plan to advance capabilities as fast as possible while making sure our integrity always remains ahead.</p>
+      <p>This way, we can scale in peace.</p>
+      <p>Our singular focus means no distraction by management overhead or product cycles, and our business model means innovation, security, and progress are all insulated from short-term commercial pressures.</p>
+      <p>We are assembling a lean, exceptional team of the world's best engineers and researchers dedicated to focusing on our mission and nothing else.</p>
+      <p>If that's you, we offer an opportunity to do your life's work and help solve the most important technical challenge of our age.</p>
+      <p>It's ridiculously unreasonable that it might actually work out.</p>
+
+      <h3>Photography</h3>
+      <div class="photo-container">
+        <img src="images/sketch-1.png" alt="A sketch drawing" class="image-base">
+        <img src="images/jason-irl.jpg" alt="A photo of Jason" class="image-hover">
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <p>&copy; 2025 jasonesg. All rights reserved.</p>
+    </footer>
+
+  </div>
+  
+</body>
+</html>
 
