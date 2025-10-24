@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>jasonesg</title>
-  
+  <title>About — jasonesg</title>
+
   <style>
     body {
       margin: 0;
@@ -37,9 +37,58 @@
     a {
       color: #06f;
     }
+    .socials {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      color: #555;
+    }
+    .socials a {
+      margin-right: 10px;
+    }
     
+    /* Minimal Form Styling (Copied from contact.html, though not used here, for consistency) */
+    form {
+      margin-top: 20px;
+      border-top: 1px solid #ccc;
+      padding-top: 20px;
+    }
+    label {
+      display: block;
+      margin: 10px 0 5px 0;
+      font-weight: bold;
+    }
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 8px;
+      font-family: Georgia, serif;
+      font-size: 11pt; 
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box; 
+    }
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    button {
+      margin-top: 12px;
+      font-size: 11pt; 
+      padding: 8px 12px;
+      border: 1px solid #06f;
+      background: #fff;
+      color: #06f;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #06f;
+      color: #fff;
+    }
+
     /* On screens 1030px or less, the nav and content would overlap.
-       So, we switch to the mobile layout. */
+       So, we switch to the mobile layout. (Copied for consistency) */
     @media (max-width: 1030px) {
       body {
         padding: 20px;
@@ -63,43 +112,73 @@
         margin-bottom: 0;
       }
     }
-
-    /* --- Photo hover effect styles (restored) --- */
-    .photo-container {
-        position: relative;
-        width: 180px; /* Set to image width */
-        height: 180px; /* Set to image height */
-        margin: 30px 0;
-        cursor: pointer; 
-    }
-
-    .photo-container img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        transition: opacity 0.4s ease-in-out;
-    }
-
-    .photo-container .image-hover {
-        opacity: 0;
-    }
-
-    .photo-container:hover .image-hover {
-        opacity: 1;
-    }
-
-    .photo-container .image-base {
-        opacity: 1;
-    }
-    /* --- END of photo styles --- */
   </style>
 </head>
 <body>
-  
+    
   <nav>
     <a href="index.html">Home</a>
     <a href="about.html">About me</a>
     <a href="contact.html">Contact/Rates</a>
   </nav>
+
+  <div class="content">
+    <header>
+      <h1>About me</h1>
+      <div class="strap">Who I am and how I work.</div>
+    </header>
+
+    <main class="body" role="main">
+      <section class="body" aria-label="About content">
+        <p>It's already hard enough to keep up with all of the rapid advances in the Valley.</p>
+        <p>From the Gen-X founders that built their companies before AWS existed to the Gen-Z builder who can't fathom a world without smartphones.</p>
+        
+        <p>Everyone's attention span is being tested in different directions.</p>
+        <p>Tiktok, Reels, Shorts. LinkedIn Essays, Twitter feeds & Substack newsletters for others. Different algorithms, same challenge. We're all scrolling through what-ifs instead of building.
+        ‍</p>
+        
+        <p>The irony isn't lost though. We have more tools than ever to create, but, we find ourselves stuck. For less than $100, anyone can have a researcher, companion, and photographer in the palm of their hands. Generative A.I. went from research papers to seeping through our workflows overnight.</p>
+        
+        <p>Boomers have already automated their workflows. Gen-X is building enterprise solutions. Millenials are "disrupting" everything. Gen-Z is already over it and building what's next. YOU understand what your product is. BUT. The rest of the world does not.</p>
+        
+        <p>It's complex with a lot of technical jargon under the hood. Blockchain this. SSI that. AGI there. There's already a lot of unknowns in the mainstream media that the layman tunes out. Yet, you know exactly WHY your startup matters.</p>
+        
+        <p>We're not contentious for the fuck of it, we're contentious because we're curious. We ask the difficult questions that your advisors are too polite to ask.</p>
+        
+        <p>Oh and btw.</p>
+        
+        <p>All that stuff I mentioned above isn't my personal experience. They're the collective experience of the people I've worked with.</p>
+        
+        <p>I just happen to be decent* at building this stupid website.</p>
+
+        <a href="inspo.html">My Inspo</a>
+        
+        <p>We're a media company that partners with founding teams with or without an ARR. From launch videos to investor updates, from product demos to brand narratives. A story that actually makes sense.</p>
+        
+        <p>Generative A.I. is extremely powerful when used correctly with the right people. But your story will never be about tooling, context limits, and even benchmarks. It's about the future you're building that everybody else can't see nor understand.</p>
+        
+        <p>Apple Events have been pre-recorded for 5 years now. So why shouldn't your product launch be as intentional?</p>
+        <p>Innovation and impact come from emergent behavior.</p>
+        <p>And sometimes, you need somebody else to see what you've been too close to notice. We're in the business of giving care to the product you continuously lose sleep over.</p>
+
+        <div style="margin: 30px 0;">
+            <img src="images/jason-irl.jpg" alt="A photo of Jason" style="width:200px; height:200px; display:block;">
+        </div>
+
+        <p style="margin-top: 30px;"><a href="inspo.html">My Inspo</a></p>
+
+        <div class="socials" aria-label="Social links">
+          Follow me:
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://x.com/" target="_blank" rel="noopener">X</a>
+          <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a>
+        </div>
+
+        <p class="cta">Contact: <a href="mailto:hello@jasonesg.com">hello@jasonesg.com</a></p>
+      </section>
+    </main>
+  </div>
+  
+  </body>
+</html>
