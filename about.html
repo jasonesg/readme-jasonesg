@@ -11,8 +11,6 @@
       font-family: Georgia, serif;
       color: #333;
       font-size: 11pt; 
-      /* FIX: Push all content over by the width of the fixed nav (150px) plus margins (40px on left, 40px for content separation) */
-      padding-left: 230px; 
     }
     nav {
       position: fixed; /* Fixes to the viewport */
@@ -30,8 +28,8 @@
     }
     .content {
       max-width: 650px; /* Content readability width */
-      /* FIX: Reverted to 'auto' to center the content within the space created by body padding */
-      margin: 40px auto; 
+      /* FIX: Explicitly set a minimum left margin (230px) to clear the fixed 150px nav + 40px offset, while using 'auto' for centering in the remaining space. */
+      margin: 40px auto 40px 230px; 
       line-height: 1.6;
     }
     h1, h2, h3 {
@@ -93,11 +91,11 @@
     /* On screens 1030px or less, the nav and content would overlap. */
     @media (max-width: 1030px) {
       body {
-        padding: 20px; /* Reverts padding-left: 230px for mobile */
+        padding: 20px;
       }
       .content {
         max-width: 100%;
-        margin: 0; /* Remove auto margin on mobile */
+        margin: 0; /* Remove fixed margin on mobile */
       }
       nav {
         position: static; /* Un-stick on mobile */
