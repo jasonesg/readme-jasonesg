@@ -13,8 +13,8 @@
       font-size: 11pt; 
     }
     nav {
-      position: fixed; /* Fixes to the viewport */
-      left: 40px; /* Hugs the left side with 40px space */
+      position: fixed; /* FIX: Restores Fixed Nav */
+      left: 40px; 
       top: 40px;
       width: 150px; 
     }
@@ -28,8 +28,8 @@
     }
     .content {
       max-width: 650px; /* Content readability width */
-      /* Uniform Alignment: Centered in the available space (230px left margin clears the fixed nav) */
-      margin: 40px auto 40px 230px; 
+      /* Left Alignment: Fixed left margin to clear nav, fixed right margin */
+      margin: 40px 40px 40px 230px; 
       line-height: 1.6;
     }
     h1, h2, h3 {
