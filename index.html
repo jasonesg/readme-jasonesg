@@ -26,10 +26,11 @@
     nav a:hover {
       text-decoration: underline;
     }
-    .content {
-      max-width: 650px; /* Content readability width */
-      margin: 40px auto; /* Centers the content block in the viewport */
-      line-height: 1.6;
+.content {
+  max-width: 650px; 
+  /* Centers the content block, but adds a left margin to clear the fixed nav */
+  margin: 40px 40px 40px calc(40px + 150px + 40px); 
+  line-height: 1.6;
     }
     h1, h2, h3 {
       line-height: 1.2;
