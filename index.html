@@ -13,8 +13,8 @@
       font-size: 11pt; 
     }
     nav {
-      position: fixed; /* Fixes to the viewport */
-      left: 40px; /* Hugs the left side with 40px space */
+      position: fixed; /* FIX: Restores Fixed Nav */
+      left: 40px; 
       top: 40px;
       width: 150px; 
     }
@@ -26,11 +26,11 @@
     nav a:hover {
       text-decoration: underline;
     }
-.content {
-  max-width: 650px; 
-  /* Centers the content block, but adds a left margin to clear the fixed nav */
-  margin: 40px 40px 40px calc(40px + 150px + 40px); 
-  line-height: 1.6;
+    .content {
+      max-width: 650px; 
+      /* Left Alignment: Fixed left margin to clear nav, fixed right margin */
+      margin: 40px 40px 40px 230px; 
+      line-height: 1.6;
     }
     h1, h2, h3 {
       line-height: 1.2;
@@ -47,7 +47,7 @@
       }
       .content {
         max-width: 100%;
-        margin: 0; /* Remove auto margin */
+        margin: 0; /* Remove fixed margin on mobile */
       }
       nav {
         position: static; /* Un-stick on mobile */
@@ -68,8 +68,8 @@
     /* --- Photo hover effect styles (restored) --- */
     .photo-container {
         position: relative;
-        width: 180px; /* Set to image width */
-        height: 180px; /* Set to image height */
+        width: 180px; 
+        height: 180px; 
         margin: 30px 0;
         cursor: pointer; 
     }
