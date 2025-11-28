@@ -6,19 +6,24 @@
   <title>Contact — jasonesg</title>
   
   <style>
+    /* --- CORE SETTINGS --- */
     body {
       margin: 0;
+      /* FIXED: Force white background so text is visible in Dark Mode */
+      background-color: #ffffff; 
       font-family: Georgia, serif;
-      color: #333;
+      color: #333; /* Dark text */
       font-size: 11pt; 
+      min-height: 100vh;
     }
+
     /* --- DESKTOP NAV (Sticky Left) --- */
     nav {
-      position: fixed; /* Nav is sticky */
+      position: fixed;
       left: 40px; 
       top: 40px;
       width: 150px; 
-      background-color: white; 
+      background-color: #ffffff; /* Ensure nav background is white */
       padding: 0; 
       z-index: 100;
     }
@@ -26,23 +31,30 @@
       display: block; 
       text-decoration: none;
       margin-bottom: 10px;
+      color: #06f; /* Link color */
     }
     nav a:hover {
       text-decoration: underline;
     }
+
     /* --- DESKTOP CONTENT (Centered) --- */
     .content {
-      max-width: 650px; /* Content readability width */
-      /* Centered Alignment */
+      max-width: 650px; 
       margin: 40px auto; 
       line-height: 1.6;
+      padding-bottom: 50px; /* Space at bottom */
     }
-    h1, h2, h3 {
+
+    h1 {
       line-height: 1.2;
+      margin-bottom: 20px;
     }
+    
     a {
       color: #06f;
     }
+
+    /* --- SOCIAL LINKS --- */
     .socials {
       margin-top: 20px;
       margin-bottom: 20px;
@@ -52,7 +64,7 @@
       margin-right: 10px;
     }
     
-    /* Minimal Form Styling (Restored) */
+    /* --- FORM STYLING --- */
     form {
       margin-top: 20px;
       border-top: 1px solid #ccc;
@@ -61,4 +73,130 @@
     label {
       display: block;
       margin: 10px 0 5px 0;
-      font-
+      font-weight: bold;
+    }
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 8px;
+      font-family: Georgia, serif;
+      font-size: 11pt; 
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box; 
+      background-color: #fff; /* Ensure input background is white */
+      color: #333;
+    }
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    button {
+      margin-top: 12px;
+      font-size: 11pt; 
+      padding: 8px 12px;
+      border: 1px solid #06f;
+      background: #fff;
+      color: #06f;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #06f;
+      color: #fff;
+    }
+
+    /* --- FOOTER --- */
+    .site-footer {
+      border-top: 1px solid #ccc;
+      margin-top: 40px;
+      padding-top: 20px;
+      color: #777;
+      font-size: 10pt;
+    }
+
+    /* --- MOBILE RESPONSIVE (Triggers on screens narrower than 1030px) --- */
+    @media (max-width: 1030px) {
+      body {
+        padding-top: 60px; /* Push content down so Nav doesn't cover it */
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+      .content {
+        max-width: 100%;
+        margin: 20px auto; 
+      }
+      nav {
+        /* Switch from Side to Top bar */
+        position: fixed; 
+        left: 0;
+        top: 0;
+        width: 100%; 
+        height: auto;
+        padding: 15px 20px;
+        display: flex; 
+        justify-content: center; 
+        border-bottom: 1px solid #ccc;
+      }
+      nav a {
+        display: inline-block; 
+        margin-right: 15px;
+        margin-bottom: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About me</a>
+    <a href="contact.html">Contact/Rates</a>
+  </nav>
+
+  <div class="content">
+    <header>
+      <h1>Contact</h1>
+    </header>
+
+    <main role="main">
+      <section aria-label="Contact details">
+          
+          <p><a href="inspo.html">My Inspo</a></p>
+          
+          <h3>Let's talk!</h3>
+          <p>Email: <a href="mailto:hello@jasonesg.com">hello@jasonesg.com</a></p>
+          
+          <div class="socials">
+              Follow us:
+              <a href="https://www.linkedin.com/" target="_blank" rel="noopener">YouTube</a>
+              <a href="https://x.com/" target="_blank" rel="noopener">Twitter</a>
+              <a href="https://instagram.com/" target="_blank" rel="noopener">Insta</a>
+          </div>
+
+          <form name="contact" method="post" netlify>
+            <input type="hidden" name="form-name" value="contact" />
+            
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" autocomplete="name" required />
+            
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" required />
+            
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="How can we help?" required></textarea>
+            
+            <button type="submit">Send</button>
+          </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>&copy; 2025 jasonesg. All rights reserved.</p>
+    </footer>
+
+  </div>
+    
+</body>
+</html>
