@@ -6,14 +6,32 @@
   <title>Contact — jasonesg</title>
   
   <style>
-    /* --- CORE SETTINGS --- */
+    /* --- CSS VARIABLES FOR THEMES --- */
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #333333;
+      --nav-bg: #ffffff;
+      --link-color: #0066ff;
+      --border-color: #cccccc;
+    }
+
+    /* Dark Mode Variables */
+    [data-theme="dark"] {
+      --bg-color: #111111;
+      --text-color: #eeeeee;
+      --nav-bg: #111111;
+      --link-color: #66b3ff;
+      --border-color: #444444;
+    }
+
     body {
       margin: 0;
-      /* FIXED: Force white background so text is visible in Dark Mode */
-      background-color: #ffffff; 
-      font-family: Georgia, serif;
-      color: #333; /* Dark text */
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      /* UPDATED FONT FAMILY */
+      font-family: 'Iowan Old Style BT', Georgia, serif;
       font-size: 11pt; 
+      transition: background-color 0.3s, color 0.3s;
       min-height: 100vh;
     }
 
@@ -23,18 +41,42 @@
       left: 40px; 
       top: 40px;
       width: 150px; 
-      background-color: #ffffff; /* Ensure nav background is white */
+      background-color: var(--nav-bg); 
       padding: 0; 
       z-index: 100;
+      transition: background-color 0.3s;
     }
     nav a {
       display: block; 
       text-decoration: none;
       margin-bottom: 10px;
-      color: #06f; /* Link color */
+      color: var(--link-color);
     }
     nav a:hover {
       text-decoration: underline;
+    }
+
+    /* Clock & Toggle Styles */
+    .nav-extras {
+      margin-top: 30px;
+      font-family: monospace;
+      font-size: 10pt;
+      color: var(--text-color);
+    }
+    .theme-toggle {
+      background: none;
+      border: none; 
+      color: var(--text-color);
+      cursor: pointer;
+      padding: 0; 
+      margin-top: 10px;
+      font-size: 14pt; 
+      line-height: 1;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+    }
+    .theme-toggle:hover {
+      background-color: rgba(0,0,0,0.05); 
     }
 
     /* --- DESKTOP CONTENT (Centered) --- */
@@ -51,14 +93,15 @@
     }
     
     a {
-      color: #06f;
+      color: var(--link-color);
     }
 
     /* --- SOCIAL LINKS --- */
     .socials {
       margin-top: 20px;
       margin-bottom: 20px;
-      color: #555;
+      color: var(--text-color);
+      opacity: 0.8;
     }
     .socials a {
       margin-right: 10px;
@@ -66,17 +109,18 @@
     
     /* --- FOOTER --- */
     .site-footer {
-      border-top: 1px solid #ccc;
+      border-top: 1px solid var(--border-color);
       margin-top: 40px;
       padding-top: 20px;
-      color: #777;
+      color: var(--text-color);
+      opacity: 0.7;
       font-size: 10pt;
     }
 
-    /* --- MOBILE RESPONSIVE (Triggers on screens narrower than 1030px) --- */
+    /* --- MOBILE RESPONSIVE --- */
     @media (max-width: 1030px) {
       body {
-        padding-top: 60px; /* Push content down so Nav doesn't cover it */
+        padding-top: 60px;
         padding-left: 20px;
         padding-right: 20px;
       }
@@ -85,21 +129,35 @@
         margin: 20px auto; 
       }
       nav {
-        /* Switch from Side to Top bar */
-        position: fixed; 
+        position: fixed;
         left: 0;
         top: 0;
-        width: 100%; 
-        height: auto;
-        padding: 15px 20px;
-        display: flex; 
-        justify-content: center; 
-        border-bottom: 1px solid #ccc;
+        width: 100%;
+        padding: 10px 20px;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center; 
+        justify-content: space-between; 
+        border-bottom: 1px solid var(--border-color);
       }
-      nav a {
+      .nav-links {
+        display: flex;
+      }
+      .nav-links a {
         display: inline-block; 
         margin-right: 15px;
         margin-bottom: 0;
+        font-size: 10pt;
+      }
+      .nav-extras {
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .theme-toggle {
+        margin-top: 0;
+        padding: 0 5px; 
       }
     }
   </style>
@@ -107,9 +165,16 @@
 <body>
 
   <nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About me</a>
-    <a href="contact.html">Contact</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About me</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <div class="nav-extras">
+      <div id="clock">00:00:00 AM</div>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">🫩</button>
+    </div>
   </nav>
 
   <div class="content">
@@ -123,7 +188,7 @@
         <p>For anyone interested in what I'm currently working on, take a look @ <a href="https://www.instagram.com/havehoudys" target="_blank" rel="noopener">houdysmedia.com</a></p>
         <p>For other inquiries please email me @ <a href="mailto:jason@taskboard.org">jason@taskboard.org</a></p>
 
-          <p>.. this site was last updated on January 25th, 2026.</p>
+        <p>.. this site was last updated on January 25th, 2026.</p>
       </section>
     </main>
 
@@ -132,6 +197,50 @@
     </footer>
 
   </div>
+
+  <script>
+    // 1. Clock Functionality
+    function updateClock() {
+      const now = new Date();
+      const timeString = now.toLocaleTimeString('en-US', { 
+        hour12: true, 
+        hour: '2-digit', 
+        minute: '2-digit', 
+        second: '2-digit' 
+      });
+      document.getElementById('clock').textContent = timeString;
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
+
+    // 2. Dark Mode Toggle
+    const toggleButton = document.getElementById('theme-toggle');
+    const htmlElement = document.documentElement;
+    
+    // Check for saved user preference
+    const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+    if (currentTheme) {
+      htmlElement.setAttribute('data-theme', currentTheme);
+      updateButtonText(currentTheme);
+    }
+
+    toggleButton.addEventListener('click', function() {
+      const current = htmlElement.getAttribute('data-theme');
+      if (current === 'dark') {
+        htmlElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+        updateButtonText('light');
+      } else {
+        htmlElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+        updateButtonText('dark');
+      }
+    });
+
+    function updateButtonText(theme) {
+      toggleButton.textContent = theme === 'dark' ? '🤠' : '🫩';
+    }
+  </script>
     
 </body>
 </html>
