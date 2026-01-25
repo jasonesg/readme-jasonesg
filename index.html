@@ -6,37 +6,80 @@
   <title>jasonesg</title>
   
   <style>
+    /* --- CSS VARIABLES FOR THEMES --- */
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #333333;
+      --nav-bg: #ffffff;
+      --link-color: #0066ff;
+      --border-color: #cccccc;
+    }
+
+    /* Dark Mode Variables */
+    [data-theme="dark"] {
+      --bg-color: #111111;
+      --text-color: #eeeeee;
+      --nav-bg: #111111;
+      --link-color: #66b3ff;
+      --border-color: #444444;
+    }
+
     body {
       margin: 0;
-      /* FIXED: Force white background so text is visible in Dark Mode */
-      background-color: #ffffff;
-      font-family: Georgia, serif;
-      color: #333;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Iowan Old Style BT', Georgia, serif;
       font-size: 11pt; 
+      transition: background-color 0.3s, color 0.3s;
     }
+
     /* --- DESKTOP NAV (Sticky Left) --- */
     nav {
-      position: fixed; /* Nav is sticky */
+      position: fixed;
       left: 40px; 
       top: 40px;
       width: 150px; 
-      /* Added background to cover content scroll underneath */
-      background-color: #ffffff; 
+      background-color: var(--nav-bg); 
       padding: 0; 
-      z-index: 100; /* Ensure nav is always on top */
+      z-index: 100;
+      transition: background-color 0.3s;
     }
     nav a {
       display: block; 
       text-decoration: none;
       margin-bottom: 10px;
+      color: var(--link-color);
     }
     nav a:hover {
       text-decoration: underline;
     }
+
+    /* Clock & Toggle Styles */
+    .nav-extras {
+      margin-top: 30px;
+      font-family: monospace;
+      font-size: 10pt;
+      color: var(--text-color);
+    }
+    .theme-toggle {
+      background: none;
+      border: none; 
+      color: var(--text-color);
+      cursor: pointer;
+      padding: 0; 
+      margin-top: 10px;
+      font-size: 14pt; 
+      line-height: 1;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+    }
+    .theme-toggle:hover {
+      background-color: rgba(0,0,0,0.05); 
+    }
+
     /* --- DESKTOP CONTENT (Centered) --- */
     .content {
       max-width: 650px; 
-      /* Centered Alignment */
       margin: 40px auto; 
       line-height: 1.6;
     }
@@ -44,18 +87,20 @@
       line-height: 1.2;
     }
     a {
-      color: #06f;
+      color: var(--link-color);
     }
     
     /* --- Photo hover effect styles --- */
     .photo-container {
         position: relative;
-        width: 180px; /* Set to image width */
-        height: 180px; /* Set to image height */
+        width: 180px; 
+        height: 180px; 
         margin: 30px 0;
-        cursor: pointer; 
+        cursor: pointer;
+        /* FIXED: Added border-radius and overflow hidden to round both images */
+        border-radius: 24px;
+        overflow: hidden;
     }
-
     .photo-container img {
         position: absolute;
         top: 0;
@@ -64,58 +109,67 @@
         height: 100%;
         transition: opacity 0.4s ease-in-out;
     }
-
     .photo-container .image-hover {
         opacity: 0;
     }
-
     .photo-container:hover .image-hover {
         opacity: 1;
     }
-
     .photo-container .image-base {
         opacity: 1;
     }
-    /* --- END of photo styles --- */
 
     /* --- Footer --- */
     .site-footer {
-      border-top: 1px solid #ccc;
+      border-top: 1px solid var(--border-color);
       margin-top: 40px;
       padding-top: 20px;
-      color: #777;
+      color: var(--text-color);
+      opacity: 0.7;
       font-size: 10pt;
     }
 
-    /* --- MOBILE STYLES (Switches to Top Fixed Bar) --- */
+    /* --- MOBILE STYLES --- */
     @media (max-width: 1030px) {
       body {
-        /* Pushes content down to make space for the new horizontal fixed nav */
-        padding-top: 60px; /* New padding for fixed top bar */
+        padding-top: 60px;
         padding-left: 20px;
         padding-right: 20px;
       }
       .content {
         max-width: 100%;
-        margin: 40px auto; /* Centers content fully on mobile */
+        margin: 40px auto;
       }
       nav {
-        position: fixed; /* Nav stays sticky */
+        position: fixed;
         left: 0;
         top: 0;
-        width: 100%; /* Spans the top */
+        width: 100%;
         padding: 10px 20px;
         box-sizing: border-box;
-        display: flex; /* Aligns links horizontally */
-        justify-content: center; /* Centers links */
-        margin-bottom: 0;
-        border-bottom: 1px solid #ccc;
+        display: flex;
+        align-items: center; 
+        justify-content: space-between; 
+        border-bottom: 1px solid var(--border-color);
       }
-      nav a {
+      .nav-links {
+        display: flex;
+      }
+      .nav-links a {
         display: inline-block; 
         margin-right: 15px;
         margin-bottom: 0;
         font-size: 10pt;
+      }
+      .nav-extras {
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .theme-toggle {
+        margin-top: 0;
+        padding: 0 5px; 
       }
     }
   </style>
@@ -123,9 +177,16 @@
 <body>
   
   <nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About me</a>
-    <a href="contact.html">Contact</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About me</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <div class="nav-extras">
+      <div id="clock">00:00:00 AM</div>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">🫩</button>
+    </div>
   </nav>
   
   <div class="content">
@@ -145,6 +206,50 @@
     </footer>
 
   </div>
+
+  <script>
+    // 1. Clock Functionality
+    function updateClock() {
+      const now = new Date();
+      const timeString = now.toLocaleTimeString('en-US', { 
+        hour12: true, 
+        hour: '2-digit', 
+        minute: '2-digit', 
+        second: '2-digit' 
+      });
+      document.getElementById('clock').textContent = timeString;
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
+
+    // 2. Dark Mode Toggle
+    const toggleButton = document.getElementById('theme-toggle');
+    const htmlElement = document.documentElement;
+    
+    // Check for saved user preference
+    const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+    if (currentTheme) {
+      htmlElement.setAttribute('data-theme', currentTheme);
+      updateButtonText(currentTheme);
+    }
+
+    toggleButton.addEventListener('click', function() {
+      const current = htmlElement.getAttribute('data-theme');
+      if (current === 'dark') {
+        htmlElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+        updateButtonText('light');
+      } else {
+        htmlElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+        updateButtonText('dark');
+      }
+    });
+
+    function updateButtonText(theme) {
+      toggleButton.textContent = theme === 'dark' ? '🤠' : '🫩';
+    }
+  </script>
   
 </body>
 </html>
