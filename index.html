@@ -96,8 +96,8 @@
         width: 180px; 
         height: 180px; 
         margin: 30px 0;
-        cursor: pointer;
-        /* FIXED: Added border-radius and overflow hidden to round both images */
+        cursor: pointer; 
+        /* FIXED: Added rounded corners and overflow hidden */
         border-radius: 24px;
         overflow: hidden;
     }
@@ -191,7 +191,8 @@
   
   <div class="content">
     <header>
-      <h1>Howdy, i'm @jasonesg!</h1>
+      <h1>Howdy, i'm @jasonesg.</h1>
+      <div class="strap">The future is within reach.</div>
     </header>
 
     <main class="body" role="main">
@@ -208,7 +209,6 @@
   </div>
 
   <script>
-    // 1. Clock Functionality
     function updateClock() {
       const now = new Date();
       const timeString = now.toLocaleTimeString('en-US', { 
@@ -222,12 +222,10 @@
     updateClock();
     setInterval(updateClock, 1000);
 
-    // 2. Dark Mode Toggle
     const toggleButton = document.getElementById('theme-toggle');
     const htmlElement = document.documentElement;
-    
-    // Check for saved user preference
     const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+    
     if (currentTheme) {
       htmlElement.setAttribute('data-theme', currentTheme);
       updateButtonText(currentTheme);
