@@ -6,7 +6,6 @@
   <title>Inspo</title>
   
   <style>
-    /* --- CSS VARIABLES FOR THEMES --- */
     :root {
       --bg-color: #F3F3F3;
       --text-color: #333333;
@@ -15,7 +14,6 @@
       --border-color: #cccccc;
     }
 
-    /* Dark Mode Variables */
     [data-theme="dark"] {
       --bg-color: #111111;
       --text-color: #eeeeee;
@@ -34,7 +32,6 @@
       min-height: 100vh;
     }
 
-    /* --- DESKTOP NAV (Sticky Left) --- */
     nav {
       position: fixed;
       left: 40px; 
@@ -55,7 +52,6 @@
       text-decoration: underline;
     }
 
-    /* Clock & Toggle Styles */
     .nav-extras {
       margin-top: 30px;
       font-family: monospace;
@@ -78,7 +74,6 @@
       background-color: rgba(0,0,0,0.05); 
     }
 
-    /* --- DESKTOP CONTENT (Centered) --- */
     .content {
       max-width: 650px; 
       margin: 40px auto; 
@@ -92,7 +87,6 @@
       color: var(--link-color);
     }
     
-    /* --- Footer --- */
     .site-footer {
       border-top: 1px solid var(--border-color);
       margin-top: 40px;
@@ -102,7 +96,6 @@
       font-size: 10pt;
     }
 
-    /* --- MOBILE STYLES --- */
     @media (max-width: 1030px) {
       body {
         padding-top: 60px;
@@ -190,7 +183,6 @@
   </div>
 
   <script>
-    // 1. Clock Functionality
     function updateClock() {
       const now = new Date();
       const timeString = now.toLocaleTimeString('en-US', { 
@@ -204,11 +196,9 @@
     updateClock();
     setInterval(updateClock, 1000);
 
-    // 2. Dark Mode Toggle
     const toggleButton = document.getElementById('theme-toggle');
     const htmlElement = document.documentElement;
     
-    // Check for saved user preference
     const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
     if (currentTheme) {
       htmlElement.setAttribute('data-theme', currentTheme);
@@ -233,9 +223,7 @@
     }
   </script>
 
-<!-- your page content above -->
-
-<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "40cd50ad83224007970aa6bbcf67988c"}'></script><!-- End Cloudflare Web Analytics -->
-
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "40cd50ad83224007970aa6bbcf67988c"}'></script>
+  
 </body>
 </html>
