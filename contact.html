@@ -203,6 +203,7 @@
   </div>
 
   <script>
+    // 1. Clock Functionality
     function updateClock() {
       const now = new Date();
       const timeString = now.toLocaleTimeString('en-US', { 
@@ -211,35 +212,55 @@
         minute: '2-digit', 
         second: '2-digit' 
       });
-      document.getElementById('clock').textContent = timeString;
+      const clockElement = document.getElementById('clock');
+      if (clockElement) {
+        clockElement.textContent = timeString;
+      }
     }
     updateClock();
     setInterval(updateClock, 1000);
 
+    // 2. Auto-Theming & Toggle Functionality
     const toggleButton = document.getElementById('theme-toggle');
     const htmlElement = document.documentElement;
     
-    const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
-    if (currentTheme) {
-      htmlElement.setAttribute('data-theme', currentTheme);
-      updateButtonText(currentTheme);
+    // Check what time it is (getHours returns 0-23)
+    const currentHour = new Date().getHours();
+    
+    // 8 AM is 8, 8 PM is 20. Day time is >= 8 and < 20.
+    const timeBasedTheme = (currentHour >= 8 && currentHour < 20) ? 'light' : 'dark';
+
+    // Check if the user manually saved a preference. If not, use the time-based theme!
+    const savedTheme = localStorage.getItem('theme');
+    const activeTheme = savedTheme ? savedTheme : timeBasedTheme;
+
+    // Apply the theme on load
+    htmlElement.setAttribute('data-theme', activeTheme);
+    
+    // Function to update the button icon
+    function updateButtonText(theme) {
+      if (toggleButton) {
+        toggleButton.textContent = theme === 'dark' ? '🤠' : '🫩';
+      }
     }
 
-    toggleButton.addEventListener('click', function() {
-      const current = htmlElement.getAttribute('data-theme');
-      if (current === 'dark') {
-        htmlElement.setAttribute('data-theme', 'light');
-        localStorage.setItem('theme', 'light');
-        updateButtonText('light');
-      } else {
-        htmlElement.setAttribute('data-theme', 'dark');
-        localStorage.setItem('theme', 'dark');
-        updateButtonText('dark');
-      }
-    });
+    // Set initial button icon on load
+    updateButtonText(activeTheme);
 
-    function updateButtonText(theme) {
-      toggleButton.textContent = theme === 'dark' ? '🤠' : '🫩';
+    // Handle manual toggles
+    if (toggleButton) {
+      toggleButton.addEventListener('click', function() {
+        const current = htmlElement.getAttribute('data-theme');
+        if (current === 'dark') {
+          htmlElement.setAttribute('data-theme', 'light');
+          localStorage.setItem('theme', 'light');
+          updateButtonText('light');
+        } else {
+          htmlElement.setAttribute('data-theme', 'dark');
+          localStorage.setItem('theme', 'dark');
+          updateButtonText('dark');
+        }
+      });
     }
   </script>
   
