@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-F4EXNB5M6V"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -206,57 +205,3 @@
 
     <main class="body" role="main">
       <div class="photo-container">
-        <img src="images/fill-color-1.png" alt="svg photo of Jason" class="image-base">
-        <img src="images/jason-irl.jpg" alt="irl photo of Jason" class="image-hover">
-      </div>
-    </main>
-
-    <footer class="site-footer">
-      <p>&copy; 2026.</p>
-    </footer>
-
-  </div>
-
-  <script>
-    function updateClock() {
-      const now = new Date();
-      const timeString = now.toLocaleTimeString('en-US', { 
-        hour12: true, 
-        hour: '2-digit', 
-        minute: '2-digit', 
-        second: '2-digit' 
-      });
-      document.getElementById('clock').textContent = timeString;
-    }
-    updateClock();
-    setInterval(updateClock, 1000);
-
-    const toggleButton = document.getElementById('theme-toggle');
-    const htmlElement = document.documentElement;
-    const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
-    
-    if (currentTheme) {
-      htmlElement.setAttribute('data-theme', currentTheme);
-      updateButtonText(currentTheme);
-    }
-
-    toggleButton.addEventListener('click', function() {
-      const current = htmlElement.getAttribute('data-theme');
-      if (current === 'dark') {
-        htmlElement.setAttribute('data-theme', 'light');
-        localStorage.setItem('theme', 'light');
-        updateButtonText('light');
-      } else {
-        htmlElement.setAttribute('data-theme', 'dark');
-        localStorage.setItem('theme', 'dark');
-        updateButtonText('dark');
-      }
-    });
-
-    function updateButtonText(theme) {
-      toggleButton.textContent = theme === 'dark' ? '🤠' : '🫩';
-    }
-  </script>
-
-<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "40cd50ad83224007970aa6bbcf67988c"}'></script></body>
-</html>
